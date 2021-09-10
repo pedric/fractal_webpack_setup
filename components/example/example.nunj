@@ -1,0 +1,29 @@
+<div class="example">
+  <p class="example__text">{{text}}</p>
+  <div class="contacts">
+  {% for member in members %}
+  <div class="contact-card" data-module="avatar">
+    <img class="contact-card__avatar" src="{{member.avatar}}" alt="Avatar of {{member.name}}">
+    <h6 class="contact-card__name">{{member.name}}</h6>
+    <p class="contact-card__mail">{{member.email}}</p>
+  </div>
+  {% endfor %}
+  </div>
+  <div>
+    <h3>Animal</h3>
+    <img class="example__image" src="{{fakeImage_2}}" alt="{{image.alt}}">
+  </div>
+  <div>
+    <h3>Random image</h3>
+    <img class="example__image" src="{{fakeImage_1}}" alt="{{image.alt}}">
+  </div>
+  <div>
+    <h3>BW Portrait</h3>
+    <img class="example__image" src="{{image.url}}" alt="{{image.alt}}">
+  </div>
+</div>
+
+{# Use the icon partial for easy inclusion #}
+{# {% render '@icon', { id: 'home', class: 'icon--small' } %} #}
+{# Where "home" is the icon file name without the extension #}
+{# Don’t forget to import your icons first in assets/scripts/common.js #}

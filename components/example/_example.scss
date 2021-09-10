@@ -1,0 +1,45 @@
+.example {
+
+  .example__text {
+    font-family: sans-serif;
+  }
+
+  .example__image {
+    width: 200px;
+  }
+
+  .example__avatar {
+    width: 100px;
+  }
+}
+
+.contacts {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: sans-serif;
+  margin: 32px 8px;
+  text-align: center;
+
+  .contact-card {
+    flex: 1 1 auto;
+    max-width: 200px;
+    padding: 8px;
+    margin: 8px;
+    background-color: lavenderblush;
+    border-radius: 4px;
+    
+    .contact-card__avatar {
+      border-radius: 50%;
+    }
+
+    .contact-card__name {
+      font-size: 14px;
+      margin: 8px;
+    }
+
+    .contact-card__mail {
+      margin: 0 8px;
+      font-size: 12px;
+    }
+  }
+}

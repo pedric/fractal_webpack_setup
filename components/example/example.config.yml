@@ -1,0 +1,6 @@
+title: Example component
+context:
+  text: This is an example component!
+  image:
+    url: images/dakota-lim-EjubMjIWbWA-unsplash.jpg
+    alt: alt text
