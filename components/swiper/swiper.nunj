@@ -1,4 +1,4 @@
-<div class="animals-slide" data-module="slides">
+<div class="animals-slide" data-module="swiper">
     <!-- Slider main container -->
     <div class="swiper-container">
     <!-- Additional required wrapper -->

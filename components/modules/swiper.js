@@ -4,7 +4,7 @@ import Swiper from 'swiper';
 import faker from 'faker';
 
 
-class Slides {
+class SwiperSlider {
     constructor(el){
         this.animal = faker.image.animals();
         this.swiper;
@@ -34,6 +34,11 @@ class Slides {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
+            pagination: {
+                el: '.swiper-pagination',
+                type: 'bullets',
+                clickable: true,
+            },
             on: {
                 // init: function(){
                 //     this.update();
@@ -48,4 +53,4 @@ class Slides {
     }
 }
 
-export default Slides;
+export default SwiperSlider;
