@@ -17,7 +17,7 @@ const fakerAnimal = faker.image.animals();
 module.exports = {
 	context: {
 		members: memberData,
-    text: 'text från js config',
+    text: 'Heading',
     image: {
       url: '/assets/images/dakota-lim-EjubMjIWbWA-unsplash.jpg',
       alt: 'alt texten'

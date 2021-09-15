@@ -4,13 +4,20 @@ class Avatar {
         this.addEvents();
     }
 
-    log(){
-        console.log(this.el);
+    slide(){
+        this.el.classList.contains('contact-card--active') ?
+        this.el.classList.remove('contact-card--active') :
+        this.el.classList.add('contact-card--active');
     }
 
-    addEvents(){
+    async twist() {
+        return await Promise.resolve('click a card');
+    }
+
+    addEvents() {
         this.el.addEventListener('click', () => {
-            this.log();
+            this.slide();
+            this.twist().then(res => console.log(res));
         });
     }
 }
