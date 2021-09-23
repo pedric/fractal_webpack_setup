@@ -1,0 +1,32 @@
+<div 
+class="carousel"
+data-module="carousel"
+data-slides="carousel__card"
+data-wrapper="carousel__wrapper"
+data-bullets="1"
+data-arrows="1"
+data-direction="horizontal"
+data-button-value="1"
+data-infinite="true"
+data-free-nav="true"
+data-free-nav-break-point="400"
+data-initial-slide="0">
+    <div class="carousel__wrapper">
+    {% for card in cards %}
+        <div class="carousel__card">
+            <div class="card">
+                <header  class="card__header">
+                    <div class="card__header__image">
+                        <img src="{{ card.image.url}}" alt="{{ card.image.alt}}">
+                    </div>
+                </header>
+                <div class="card__body">
+                    <h3 class="card__title">{{ card.title }}</h3>
+                    <p>{{ card.body }}</p>
+                </div>
+                <footer></footer>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>

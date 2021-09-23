@@ -1,0 +1,33 @@
+@keyframes ncb_booking_loader {
+    0%{ 
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+    50%{ 
+        opacity: .5;
+    }
+    100%{ 
+        transform: rotate(360deg);
+        opacity: 1;
+    }
+}
+.loading-icon {
+    position: relative;
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loading-icon:after {
+    content:'';
+    display: inline-block;
+    border: 6px solid;
+    border-color: rgba(0,0,0,.5);
+    border-radius: 50%;
+    border-top-color: transparent;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    animation: ncb_booking_loader 1250ms infinite;
+    transform: scale(.95);
+}

@@ -1,0 +1,39 @@
+.accordion {
+    margin: 4px 0;
+    max-width: 420px;
+    font-family: sans-serif;
+    
+    .accordion__header {
+        position: relative;
+        background: lightgray;
+        cursor: pointer;
+        
+        h3 {
+            display: inline-block;
+        }
+    }
+
+    .accordion__body {
+        overflow: hidden;
+        height: 0px;
+        transition: all 250ms linear;
+    }
+
+    .accordion__button {
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%) rotate(0deg);
+        transition: all 250ms linear;
+    }
+
+    &.accordion--active {
+        .accordion__body {
+            height: auto;
+        }
+
+        .accordion__button {
+            transform: translateY(-50%) rotate(180deg);
+        }
+    }
+}

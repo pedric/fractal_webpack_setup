@@ -1,0 +1,132 @@
+.carousel {
+    position: relative;
+    font-family: sans-serif;
+
+    .carousel__wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        max-width: 90%;
+        margin: 0 auto;
+
+        // scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        overflow-x: scroll;
+
+        .carousel__card{
+            position: relative;
+            display: inline-block;
+            width: 330px;
+            // min-width: 330px;
+            flex: 1 0 auto;
+            margin: 8px;
+
+            scroll-snap-align: start;
+            scroll-padding: 16px;
+
+            &:nth-child(3){
+                width: 500px;
+            }
+
+            &:nth-child(6){
+                width: 430px;
+            }
+
+            &--active {
+                &:after {
+                    content: '';
+                    position: absolute;
+                    right: 0;
+                    bottom: -10px;
+                    left: 0;
+                    height: 2px;
+                    background: tomato;
+                }
+            }
+
+            .card {
+                width: 100%;
+                border: 1px solid #d8d8d8;
+                .card__header {
+
+                    .card__header__image {
+                        position: relative;
+                        padding-top: 56%;
+
+                        img {
+                            position: absolute;
+                            width: 100%;
+                            height: 100%;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%,-50%);
+                            object-fit: cover;
+                        }
+                    }
+                }
+
+                .card__title {
+
+                }
+
+                .card__body {
+                    padding: 8px;
+                }
+            }
+        }
+    }
+
+    .arrow-prev,
+    .arrow-next {
+        position: absolute;
+        top: 50%;
+    }
+    .arrow-prev { left: 20px;}
+    .arrow-next { right: 20px;}
+
+    .slider-bullets{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+
+        .slider-bullets__bullet {
+            position: relative;
+            appearance: none;
+            border: 0;
+            padding: 0;
+            background: transparent;
+            margin: 2px;
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+            transition: all 250ms linear;
+            &:hover {
+                &:after {
+                    transform: scale(1.1);
+                }
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                width: 15px;
+                height: 15px;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                border-radius: 50%;
+                background: lightblue;
+            }
+
+            &--active {
+                &:after {
+                background: lightcoral;
+            }
+            }
+        }
+    }
+}

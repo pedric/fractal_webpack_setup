@@ -1,0 +1,20 @@
+<div>
+{% for data in accordionData %}
+<div 
+class="accordion" 
+data-module="accordion" 
+data-trigger=".accordion__header" 
+data-target=".accordion__body" 
+data-css-mode="false"
+data-modifier = "accordion--active"
+data-clear-on-toggle="false">
+    <div class="accordion__header">
+        <h3>{{ data.title }}</h3>
+        <button class="accordion__button">Knapp</button>
+    </div>
+    <div class="accordion__body">
+        {{ data.body }}
+    </div>
+</div>
+{% endfor %}}
+</div>

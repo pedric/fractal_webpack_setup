@@ -1,2 +1,8 @@
-@import 'example/example.scss';
-@import 'swiper/swiper.scss';
+@import 'example/example';
+@import 'slider/slider';
+@import 'carousel/carousel';
+@import 'loader/loader';
+@import 'mousefollow/mousefollow';
+@import 'accordion/accordion';
+
+body {margin: 0;}

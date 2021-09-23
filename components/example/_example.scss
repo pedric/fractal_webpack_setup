@@ -35,7 +35,7 @@ margin: 0 auto;
 
     &--active {
         transform: perspective(100px) rotate(45deg) scale(120%) translate3d(-40px, 40px, 2px);
-        background-color: rgb(224, 159, 230);
+        background-color: rgb(76, 148, 230);
         z-index: 10;
       }
 
