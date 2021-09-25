@@ -12,7 +12,7 @@ class CustomEvent {
             this.target.style.background = 'coral';
         });
 
-        this.el.addEventListener('click', () =>{
+        this.el.addEventListener('click', (e) =>{
             window.dispatchEvent(this.event);
         });
 

@@ -1,2 +1,4 @@
-<button data-module="customevent" data-target="#thatElement">custom event</button>
-<div id="thatElement">target</div>
+<button data-module="customevent" data-target=".bubble">custom event</button>
+{%for item in items %}
+<div class="{{item.class}}" data-color="{{item.color}}" data-position-x="{{item.position.x}}" data-position-y="{{item.position.y}}"></div>
+{% endfor %}

@@ -1,3 +1,4 @@
+
 class Modal {
     constructor(el){
         this.options = { ...el.dataset } || {};
@@ -7,7 +8,7 @@ class Modal {
             closed: true
         }
         this.el = el;
-        this.closeOnWindowLeave = this.options.closeOnWindowLeave === 'true' ? true : false ;
+        this.openOnWindowLeave = this.options.openOnWindowLeave === 'true' ? true : false ;
         this.closeOnOutsideClick = this.options.closeOnOutsideClick === 'true' ? true : false ;
         this.closeButton = document.querySelector(this.options.closeElement);
         this.addEvents();
@@ -18,15 +19,23 @@ class Modal {
         this.modal.open = true;
         this.modal.closed = false;
         if(this.options.onOpen){
-            window[this.options.onOpen]();
+            this.passedOpenFunction();
         }
     }
 
     close(){
         this.target.classList.remove(this.options.activeClass);
         if(this.options.onClose){
-            window[this.options.onClose]();
+            this.passedCloseFunction();
         }
+    }
+
+    passedOpenFunction(){
+        window[this.options.onOpen]();
+    }
+
+    passedCloseFunction(){
+        window[this.options.onClose]();
     }
 
     handleClick(e){
@@ -47,6 +56,11 @@ class Modal {
         this.target.addEventListener('click', (e) => {
             this.handleClick(e);
         })
+        if(this.openOnWindowLeave){
+            document.addEventListener('mouseleave', (e) => {
+                this.open();
+            })
+        }
     }
 
     parseBool(str){
