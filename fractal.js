@@ -46,7 +46,7 @@ fractal.web.set('builder.dest', 'dist');
 // Use Nunjucks as the template engine
 fractal.components.engine('@frctl/nunjucks');
 fractal.docs.engine('@frctl/nunjucks');
-fractal.components.set('ext', '.nunj');
+fractal.components.set('ext', '.njk');
 
 // Twig (node 10?)
 // const twigAdapter = require('@frctl/twig')();

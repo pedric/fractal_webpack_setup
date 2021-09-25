@@ -6,11 +6,11 @@ const data = [];
 
 for (var i = 0; i < counter; i++) {
     data.push({
-        color: faker.commerce.color(),
+        color: faker.internet.color(),
         class: 'bubble',
         position: {
-            x: Math.floor(Math.random() * 100),
-            y: Math.floor(Math.random() * 100),
+            x: Math.floor(Math.random() * 1000),
+            y: Math.floor(Math.random() * 1000),
         }
     });
 }
