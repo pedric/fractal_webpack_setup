@@ -1,0 +1,31 @@
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,.3);
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
+    &.open {
+        display: flex;
+    }
+
+    .modal__box {
+        background: #fff;
+        padding: 8px;
+        width: 90%;
+        max-width: 630px;
+        max-height: 90vh;
+        margin: 5vh auto;
+        overflow-y: scroll;         
+    }
+
+    .modal__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

@@ -1,0 +1,35 @@
+<script>
+    function openFunction(){
+        console.log('open modal');
+    }
+    function closeFunction(){
+        console.log('close modal');
+    }
+</script>
+
+<button 
+data-module="modal" 
+data-target="#modal" 
+data-on-open="openFunction"
+data-on-close="closeFunction"
+data-active-class="open"
+data-close-on-outside-click="true"
+data-open-on-window-leave="true"
+data-close-element="#close">
+open
+</button>
+
+<div id="modal" class="modal">
+    <div class="modal__box">
+        <header class="modal__header">
+            <h2>Modal header</h2>
+            <button id="close">x</button>
+        </header>
+        <div class="modal__body">
+            <div>
+                modal content...
+            </div>
+        </div>
+        <footer class="modal__footer"></footer>
+    </div>
+</div>
