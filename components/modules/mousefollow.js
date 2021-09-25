@@ -3,8 +3,10 @@ class MouseFollow {
     constructor(el){
         this.elementPosition = el.getBoundingClientRect();
         this.deg = 0;
-        this.strength = 10; // higher value is less strong
+        this.strength = 3; // higher value is less strong
         this.el = el;
+        this.parent = el.parentElement;
+        this.parentHover = false;
         this.hit = false; // if mouse is hovering the target element
         this.mousePosition = {
             x: 0,
@@ -27,6 +29,12 @@ class MouseFollow {
         window.addEventListener('mousemove', (e) => {
             this.follow(e);
         })
+        this.parent.addEventListener('mouseenter', () => {
+            this.parentHover = true;
+        })
+        this.parent.addEventListener('mouseout', () => {
+            this.parentHover = false;
+        })
     }
 
     follow(e){
@@ -38,22 +46,20 @@ class MouseFollow {
         let x = this.mousePosition.x < this.midPoint.x ? `-${Math.abs(this.mousePosition.x)}` : `${Math.abs(this.mousePosition.x)}` ;
         let y = this.mousePosition.y < this.midPoint.y ? `-${Math.abs(this.mousePosition.x)}` : `${Math.abs(this.mousePosition.x)}` ;
         let z = 0;
-        x = `${x/this.strength}%`;
+        x = `${x/this.strength*1.2}%`;
         y = `${y/this.strength}%`;
 
         let color = {
-            red: Math.abs(this.mousePosition.x) / 4 < 255 ? Math.abs(this.mousePosition.x) / 4 : 255 ,
+            red: Math.abs(this.mousePosition.x) / 3 < 255 ? Math.abs(this.mousePosition.x) / 3 : 255 ,
             green: (Math.abs(this.mousePosition.x) / Math.abs(this.mousePosition.y)) < 255 ? Math.abs(this.mousePosition.x) / Math.abs(this.mousePosition.y) : 255 ,
-            blue: Math.abs(this.mousePosition.y) / 4 < 255 ? Math.abs(this.mousePosition.y) / 4 : 255 ,
+            blue: Math.abs(this.mousePosition.y) / 3 < 255 ? Math.abs(this.mousePosition.y) / 3 : 255 ,
         };
         
-        
-        if(this.hit) {
-            this.el.style.transform = `translate3d(0,0,0)`;
+        console.log(this.hit, this.parentHover);
+        if(this.hit || this.parentHover) {
+            this.el.style.transform = `translate3d(-50%,-50%,0)`;
             this.el.style.background = `rgb(${color.red <= 0 ? 0: color.red},${color.green <= 0 ? 0 : color.green},${color.blue <= 0 ? 0 : color.blue})`;
-            this.el.style.transform = 'scale(2.0)';
         } else {
-            this.el.style.transform = 'scale(1.0)';
             this.el.style.transform = `translate3d(${x},${y},${z})`;
             this.el.style.background = `rgb(${color.red <= 0 ? 0: color.red},${color.green <= 0 ? 0 : color.green},${color.blue <= 0 ? 0 : color.blue})`;
         }

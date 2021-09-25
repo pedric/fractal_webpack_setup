@@ -1,3 +1,5 @@
 <div class="mousefollow__wrapper">
-    <span class="mousefollow" data-module="mousefollow"></span>
+    <a class="mousefollow__link" href="#">ReadMore
+        <span class="mousefollow" data-module="mousefollow"></span>
+    </a>
 </div>
