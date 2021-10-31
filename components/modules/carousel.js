@@ -12,10 +12,11 @@ class Carousel {
         this.nextButton ? el.appendChild(this.nextButton) : null;
         this.slidesClassName = this.options.slides || 'slide';
         this.direction = this.options.direction || 'horizontal';
-        this.infinite = this.options.infinite === 'false' ? false : true ;
+        this.infinite = this.options.infinite === 'true' ? true : false ;
         this.bullets = [];
         this.freeNav = this.options.freeNav === 'true' ? true : false ;
         this.freeNavBreakPoint = parseInt(this.options.freeNavBreakPoint) || 0 ;
+        this.offset = parseInt(this.options.offset) > 0 ? parseInt(this.options.offset) : 0 ;
         if( this.options.bullets){
             this.bulletContainer = this.createElement('div', 'slider-bullets');
             for(let i = 0;i < this.slides.length;i++){
@@ -29,6 +30,8 @@ class Carousel {
         this.activeIndex = parseInt(this.options.initialSlide) || 0;
         this.el = el;
         this.scrollValue = 0;
+        this.scrollStart = 0;
+        this.mouseDown = false;
         this.init();
         this.addEvents();
     }
@@ -43,6 +46,9 @@ class Carousel {
     }
 
     init(){
+        for(let i = 0; i < this.slides.length;i++) {
+            this.slides[i].style.marginRight = `${this.offset}px`;
+        }
         this.toggleActiveSlide({init: true});
     }
 
@@ -58,11 +64,9 @@ class Carousel {
                 this.bulletClick(el);
             })
         })
-        if(this.freeNav && this.freeNavBreakPoint > window.innerWidth){
-            this.wrapper.addEventListener('scroll', () => {
-                this.handleActiveClassOnScroll();
-            },{passive:true});
-        }
+        this.wrapper.addEventListener('scroll', () => {
+            this.handleActiveClassOnScroll();
+        },{passive:true});
     }
 
     handleActiveClassOnScroll(){
@@ -114,6 +118,9 @@ class Carousel {
         
         let scrollToStart = (this.activeIndex === 0 || options.init === true) ? true : false ;
         let scrollToEnd = (this.activeIndex === this.slides.length - 1) || false ;
+        // let lastSlide = this.slides[this.slides.length - 1].getBoundingClientRect();
+        // let wrapperBox = this.wrapper.getBoundingClientRect();
+        // let lastSlideIsVisible = lastSlide.left + lastSlide.width < wrapperBox.left + wrapperBox.width;
         let scrollPrev = options.type === 'prev' || false ;
         let scrollNext = options.type === 'next' || false ;
         let bulletPick = options.type === 'bullet' || false ;
@@ -135,21 +142,25 @@ class Carousel {
                 this.toggleButtons();
             }
         }
-        
-        // else if(scrollPrev){
-        //     this.scrollValue = this.getAbsolutePositionFromIndex();
-        //     // this.scrollValue -= scrollBox.width;
-        // } else if(scrollNext){
-        //     this.scrollValue += scrollBox.width;
-        // } else if(bulletPick){
-        //     this.scrollValue = this.getAbsolutePositionFromIndex();
-        // } else {
-        //     console.warn('no condition for scroll valid');
-        // }
 
-        let left = Math.abs(this.scrollValue);
+        let offsetCompliment = 0;
+        if(this.activeIndex > 0 && this.activeIndex !== (this.slides.length - 1) ){
+            offsetCompliment = this.activeIndex * this.offset;
+        } else if(this.activeIndex === (this.slides.length - 1)) {
+            offsetCompliment = (this.slides.length - 1) * this.offset;
+        } else {
+            offsetCompliment = 0;
+        }
+
+        let left = Math.abs(this.scrollValue) + offsetCompliment;
         let behavior = 'smooth';
+        
         this.wrapper.scrollTo({ left, behavior });
+    }
+
+    lastSlideIsVisible(left) {
+        const carouselBox = this.el.getBoundingClientRect();
+        return (left - carouselBox.width ) > carouselBox.width;
     }
 
     toggleButtons(type = ''){
@@ -177,9 +188,6 @@ class Carousel {
         let width = 0;
         for(let i = 0; i < this.slides.length;i++){
             width += this.slides[i].getBoundingClientRect().width;
-            // let style = this.slides[i].currentStyle || window.getComputedStyle(this.slides[i]);
-            // width += parseInt(style.marginRight.replace('px',''));
-            // width += parseInt(style.marginLeft.replace('px',''));
         }
         return width;
     }
